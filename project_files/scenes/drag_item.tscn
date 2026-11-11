@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://dxx5flhpof2iw"]
+
+[ext_resource type="Script" uid="uid://drg0wqiuilrqn" path="res://project_files/scripts/drag_item/drag_item.gd" id="1_1m4nl"]
+[ext_resource type="FontFile" uid="uid://dnwdx4i6ubiad" path="res://project_files/models/fonts/munro.ttf" id="2_eevrt"]
+[ext_resource type="Script" uid="uid://con37njsmjmpi" path="res://project_files/scripts/drag_item/handle_dropped.gd" id="2_rx5lc"]
+
+[node name="DragItem" type="Control" unique_id=2005559699]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1062.0
+offset_bottom = -558.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1m4nl")
+
+[node name="HandleDropped" type="Node" parent="." unique_id=1042633919]
+script = ExtResource("2_rx5lc")
+
+[node name="DetectRect" type="ColorRect" parent="." unique_id=617957177]
+layout_mode = 0
+offset_right = 90.0
+offset_bottom = 90.0
+color = Color(0.24, 0.24, 0.24, 0.5882353)
+
+[node name="ItemLabel" type="Label" parent="." unique_id=1958251099]
+texture_filter = 1
+layout_mode = 0
+offset_right = 90.0
+offset_bottom = 90.0
+theme_override_fonts/font = ExtResource("2_eevrt")
+theme_override_font_sizes/font_size = 20
+text = "test"
+horizontal_alignment = 1
+vertical_alignment = 1

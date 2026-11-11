@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://csypmbdpo7eht"]
+
+[ext_resource type="PackedScene" uid="uid://0okat1ru6yh8" path="res://project_files/scenes/box.tscn" id="1_2lsmc"]
+[ext_resource type="Script" uid="uid://bowlsgtuvxehp" path="res://project_files/scripts/main_level/main_level.gd" id="1_5v88b"]
+
+[node name="MainLevel" type="Control" unique_id=797670853]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5v88b")
+
+[node name="LevelBG" type="ColorRect" parent="." unique_id=2024586849]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.47659898, 0.17534366, 0.17488778, 1)
+
+[node name="BoxContainer" type="Control" parent="." unique_id=605512252]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Box1" parent="BoxContainer" unique_id=613616316 instance=ExtResource("1_2lsmc")]
+layout_mode = 1
+offset_left = 352.0
+offset_top = 312.0
+offset_right = -710.0
+offset_bottom = -246.0
+
+[node name="Box2" parent="BoxContainer" unique_id=504916759 instance=ExtResource("1_2lsmc")]
+layout_mode = 1
+offset_left = 704.0
+offset_top = 312.0
+offset_right = -358.0
+offset_bottom = -246.0
+
+[node name="Box3" parent="BoxContainer" unique_id=958202265 instance=ExtResource("1_2lsmc")]
+layout_mode = 1
+offset_left = 528.0
+offset_top = 184.0
+offset_right = -534.0
+offset_bottom = -374.0
+
+[node name="DragItemsParent" type="Node" parent="." unique_id=757742045]

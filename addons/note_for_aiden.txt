@@ -1,0 +1,2 @@
+
+ignore this addons folder, this is just some personal config stuff 

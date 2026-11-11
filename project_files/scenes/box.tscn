@@ -1,0 +1,109 @@
+[gd_scene format=3 uid="uid://0okat1ru6yh8"]
+
+[ext_resource type="Script" uid="uid://cdcpf70g6g1g5" path="res://project_files/scripts/box/box.gd" id="1_hrnpf"]
+[ext_resource type="Script" uid="uid://clejkdvqmd4pm" path="res://project_files/scripts/box/handlers/handle_mouse_hover.gd" id="1_sdqlq"]
+[ext_resource type="Texture2D" uid="uid://dhvrw8xhxvom7" path="res://project_files/models/box/box_bg.png" id="1_u7cd6"]
+[ext_resource type="Texture2D" uid="uid://bf0pjr2r6bwjc" path="res://project_files/models/box/box_inside_border.png" id="2_0o1jb"]
+[ext_resource type="Script" uid="uid://x34a7c0dywm6" path="res://project_files/scripts/box/handlers/handle_drag_hover.gd" id="2_hw4ri"]
+[ext_resource type="Texture2D" uid="uid://dgw8lwoauatn0" path="res://project_files/models/box/box_outside_border.png" id="3_y7mkk"]
+[ext_resource type="FontFile" uid="uid://dnwdx4i6ubiad" path="res://project_files/models/fonts/munro.ttf" id="4_y7mkk"]
+
+[sub_resource type="Shader" id="Shader_0o1jb"]
+code = "shader_type canvas_item;
+
+uniform float low_opacity : hint_range(0.0, 1.0) = 0.2;
+uniform float high_opacity : hint_range(0.0, 1.0) = 1.0;
+uniform float blink_speed : hint_range(0.1, 5.0) = 1.0;
+
+void fragment() {
+	COLOR = texture(TEXTURE, UV) * COLOR;
+
+	float pulse = (sin(TIME * blink_speed * TAU) + 1.0) * 0.5;
+	COLOR.a *= mix(low_opacity, high_opacity, pulse);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fe5dk"]
+shader = SubResource("Shader_0o1jb")
+shader_parameter/low_opacity = 0.2
+shader_parameter/high_opacity = 1.0
+shader_parameter/blink_speed = 3.0000001392401203
+
+[node name="Box" type="Control" unique_id=613616316]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1062.0
+offset_bottom = -558.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hrnpf")
+
+[node name="HandleMouseHover" type="Node" parent="." unique_id=695890934]
+script = ExtResource("1_sdqlq")
+
+[node name="HandleDragHover" type="Node" parent="." unique_id=951012358]
+script = ExtResource("2_hw4ri")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1419929398]
+texture_filter = 1
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("1_u7cd6")
+
+[node name="Borders" type="Control" parent="." unique_id=1151170640]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="InsideActiveBorder" type="TextureRect" parent="Borders" unique_id=896549253]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("2_0o1jb")
+
+[node name="OutsideMouseBorder" type="TextureRect" parent="Borders" unique_id=141259500]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 93.0
+offset_bottom = 93.0
+mouse_filter = 2
+texture = ExtResource("3_y7mkk")
+
+[node name="OutsideDragBorder" type="TextureRect" parent="Borders" unique_id=1445888377]
+visible = false
+texture_filter = 1
+material = SubResource("ShaderMaterial_fe5dk")
+layout_mode = 0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 93.0
+offset_bottom = 93.0
+mouse_filter = 2
+texture = ExtResource("3_y7mkk")
+
+[node name="ItemLabel" type="Label" parent="." unique_id=1057790679]
+texture_filter = 1
+layout_mode = 0
+offset_right = 90.0
+offset_bottom = 90.0
+theme_override_fonts/font = ExtResource("4_y7mkk")
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DetectRect" type="ColorRect" parent="." unique_id=133423705]
+layout_mode = 0
+offset_right = 90.0
+offset_bottom = 90.0
+color = Color(1, 1, 1, 0)
